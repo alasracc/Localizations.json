@@ -1,0 +1,48 @@
+{% assign VAT_0 = "0090568c-9206-4790-b048-cf5bbc38e600" %}
+{% assign ADH_VAT_5 = "fbb90811-b509-4bec-8c5a-f3b5d8c29a1e" %}
+{% assign AJM_VAT_5 = "011753ae-896b-4987-871f-38c8e7643b4a" %}
+{% assign DXB_VAT_5 = "730d67ef-b28e-4a9a-adcc-3daefd8d2158" %}
+{% assign FUJ_VAT_5 = "948b0d2c-f249-45bc-b63d-4610b0332e09" %}
+{% assign RAK_VAT_5 = "bc585b5f-2f5e-4d39-99b8-deb7bee7779e" %}
+{% assign RCM_VAT_5 = "9fc0979f-838d-466c-bfc0-48e7315443d5" %}
+{% assign SHJ_VAT_5 = "aad159c3-996b-4daf-85db-df8a1fbc41ce" %}
+{% assign UMQ_VAT_5 = "436925e4-8295-4a3a-a4df-4cc76c7dcf54" %}
+
+{% assign period = transactions | between: report.From, report.To %}
+
+{% assign C1 = period | taxcode: ADH_VAT_5 | tax_exclusive_sales | reversesign %}
+{% assign D1 = period | taxcode: ADH_VAT_5 | tax_on_sales | reversesign %}
+
+{% assign C2 = period | taxcode: AJM_VAT_5 | tax_exclusive_sales | reversesign %}
+{% assign D2 = period | taxcode: AJM_VAT_5 | tax_on_sales | reversesign %}
+
+{% assign C3 = period | taxcode: DXB_VAT_5 | tax_exclusive_sales | reversesign %}
+{% assign D3 = period | taxcode: DXB_VAT_5 | tax_on_sales | reversesign %}
+
+{% assign C4 = period | taxcode: FUJ_VAT_5 | tax_exclusive_sales | reversesign %}
+{% assign D4 = period | taxcode: FUJ_VAT_5 | tax_on_sales | reversesign %}
+
+{% assign C5 = period | taxcode: RAK_VAT_5 | tax_exclusive_sales | reversesign %}
+{% assign D5 = period | taxcode: RAK_VAT_5 | tax_on_sales | reversesign %}
+
+{% assign C6 = period | taxcode: SHJ_VAT_5 | tax_exclusive_sales | reversesign %}
+{% assign D6 = period | taxcode: SHJ_VAT_5 | tax_on_sales | reversesign %}
+
+{% assign C7 = period | taxcode: UMQ_VAT_5 | tax_exclusive_sales | reversesign %}
+{% assign D7 = period | taxcode: UMQ_VAT_5 | tax_on_sales | reversesign %}
+
+{% assign C8 = period | taxcode: VAT_0 | tax_exclusive_sales | reversesign %}
+
+{% assign C9 = period | taxcode: RCM_VAT_5 | tax_exclusive_purchases %}
+{% assign D9 = period | taxcode: RCM_VAT_5 | tax_on_purchases %}
+
+{% assign C10 = period | taxcode: ADH_VAT_5, AJM_VAT_5, DXB_VAT_5, FUJ_VAT_5, RAK_VAT_5, SHJ_VAT_5, UMQ_VAT_5, RCM_VAT_5 | tax_exclusive_sales | reversesign %}
+{% assign D10 = period | taxcode: ADH_VAT_5, AJM_VAT_5, DXB_VAT_5, FUJ_VAT_5, RAK_VAT_5, SHJ_VAT_5, UMQ_VAT_5, RCM_VAT_5 | tax_on_sales | reversesign %}
+
+{% assign C11 = period | taxcode: ADH_VAT_5, AJM_VAT_5, DXB_VAT_5, FUJ_VAT_5, RAK_VAT_5, SHJ_VAT_5, UMQ_VAT_5 | tax_exclusive_purchases %}
+{% assign D11 = period | taxcode: ADH_VAT_5, AJM_VAT_5, DXB_VAT_5, FUJ_VAT_5, RAK_VAT_5, SHJ_VAT_5, UMQ_VAT_5 | tax_on_purchases %}
+
+{% assign C12 = period | taxcode: ADH_VAT_5, AJM_VAT_5, DXB_VAT_5, FUJ_VAT_5, RAK_VAT_5, SHJ_VAT_5, UMQ_VAT_5, RCM_VAT_5 | tax_exclusive_purchases %}
+{% assign D12 = period | taxcode: ADH_VAT_5, AJM_VAT_5, DXB_VAT_5, FUJ_VAT_5, RAK_VAT_5, SHJ_VAT_5, UMQ_VAT_5, RCM_VAT_5 | tax_on_purchases %}
+
+{% assign D13 = period | taxcode: ADH_VAT_5, AJM_VAT_5, DXB_VAT_5, FUJ_VAT_5, RAK_VAT_5, SHJ_VAT_5, UMQ_VAT_5, RCM_VAT_5 | tax_amount | reversesign %}
